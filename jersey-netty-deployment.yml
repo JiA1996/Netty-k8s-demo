@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: jersey-netty-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jersey-netty
+  template:
+    metadata:
+      labels:
+        app: jersey-netty
+    spec:
+      containers:
+      - name: jersey-netty
+        image: ja3802/netty-test:v1.01
+        imagePullPolicy: IfNotPresent
+        # List of ports to expose from the container
+        ports:
+        - containerPort: 8080
